@@ -2,44 +2,31 @@ const mongoose = require('mongoose');
 
 const TracksSchema = new mongoose.Schema(
     {
-        name: {
-            type: String
-        },
-        albun: {
-            type: String
-        },
+        name: String,
+        album: String,
         cover: {
-            validate: (req) => {
-                return true;
+            type: String,
+            validate: {
+                validator: (req) => {
+                    return true;
+                }
             },
             message: 'ERROR_URL'
         },
         artist: {
-            name: {
-                type: String
-            },
-            nickname: {
-                type: String
-            },
-            nationality: {
-                type: String
-            }
+            name: String,
+            nickname: String,
+            nationality: String
         },
         duration: {
-            start: {
-                type: Number
-            },
-            end: {
-                type: Number
-            }
+            start: Number,
+            end: Number
         },
-        mediaId: {
-            type: mongoose.Types.ObjectId
-        }
+        mediaId: String
     },
     {
         timestamps: true, // createdAt, updatedAt
-        versionKey:false,S
+        versionKey: false
     }
 );
 

@@ -2,17 +2,13 @@ const mongoose = require('mongoose');
 
 const StorageSchema = new mongoose.Schema(
     {
-        url: {
-            type: String
-        },
-        filename: {
-            type: Number
-        }
+        url: String,
+        filename: String
     },
     {
         timestamps: true, // createdAt, updatedAt
-        versionKey:false,S
+        versionKey: false
     }
 );
 
-module.exports = mongoose.model('storages', StorageSchema);
+module.exports = mongoose.model('storage', StorageSchema);
