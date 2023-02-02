@@ -1,29 +1,30 @@
-const mongoose = require('mongoose');
-
-const UserSchema = new mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-        },
-        age: {
-            type: Number,
-            required: true,
-        },
-        email: {
-            type: String,
-            unique: true,
-        },
-        password: String,
-        role: {
-            type: ["user", "admin"],
-            default: "user",
-        },
+const mongoose = require("mongoose");
+const mongooseDelete = require("mongoose-delete");
+const UserScheme = new mongoose.Schema(
+  {
+    name: {
+      type: String,
     },
-    {
-        timestamps: true, // createdAt, updatedAt
-        versionKey: false
-    }
+    age: {
+      type: Number,
+    },
+    email: {
+      type: String,
+      unique: true,
+    },
+    password: {
+      type: String,
+    },
+    role: {
+      type: ["user", "admin"],
+      default: "user",
+    },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
 );
 
-module.exports = mongoose.model('users', UserSchema);
+UserScheme.plugin(mongooseDelete, { overrideMethods: "all" });
+module.exports = mongoose.model("users", UserScheme);
